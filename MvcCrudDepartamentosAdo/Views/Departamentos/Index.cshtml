@@ -10,6 +10,7 @@
             <th>ID</th>
             <th>NOMBRE</th>
             <th>LOCALIDAD</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -19,6 +20,14 @@
                 <td>@dept.IdDepartamento</td>
                 <td>@dept.Nombre</td>
                 <td>@dept.Localidad</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "Departamentos"
+                    , new { iddepartamento = dept.IdDepartamento}) | 
+                    @Html.ActionLink("Delete", "Delete", "Departamentos"
+                    , new { iddepartamento = dept.IdDepartamento}) | 
+                    @Html.ActionLink("Update", "Update", "Departamentos"
+                    , new {iddepartamento = dept.IdDepartamento})
+                </td>
             </tr>
         }
     </tbody>

@@ -59,5 +59,54 @@ namespace MvcCrudDepartamentosAdo.Repositories
             this.com.Parameters.Clear();
             return departamento;
         }
+
+        public void InsertDepartamento(int id, string nombre, string localidad)
+        {
+            string sql = "insert into dept values (@ID, @NOMBRE, @LOCALIDAD)";
+            SqlParameter pamid = new SqlParameter("@ID", id);
+            SqlParameter pamnombre = new SqlParameter("@NOMBRE", nombre);
+            SqlParameter pamloc = new SqlParameter("@LOCALIDAD", localidad);
+            this.com.Parameters.Add(pamid);
+            this.com.Parameters.Add(pamnombre);
+            this.com.Parameters.Add(pamloc);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
+
+        public void UpdateDepartamento
+            (int id, string nombre, string localidad)
+        {
+            string sql = "update dept set dnombre=@NOMBRE, loc=@LOC "
+                + " where dept_no=@ID";
+            SqlParameter pamnombre = new SqlParameter("@NOMBRE", nombre);
+            SqlParameter pamid = new SqlParameter("@ID", id);
+            SqlParameter pamloc = new SqlParameter("@LOC", localidad);
+            this.com.Parameters.Add(pamnombre);
+            this.com.Parameters.Add(pamid);
+            this.com.Parameters.Add(pamloc);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
+
+        public void DeleteDepartamento(int id)
+        {
+            string sql = "delete from dept where dept_no=@id";
+            SqlParameter pamid = new SqlParameter("@id", id);
+            this.com.Parameters.Add(pamid);
+            this.com.CommandType = CommandType.Text;
+            this.com.CommandText = sql;
+            this.cn.Open();
+            this.com.ExecuteNonQuery();
+            this.cn.Close();
+            this.com.Parameters.Clear();
+        }
     }
 }
